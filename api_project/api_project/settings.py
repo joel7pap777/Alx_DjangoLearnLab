@@ -31,16 +31,21 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'django.contrib.admin',          # Must be here
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Third-party apps
     'rest_framework',
-    'api',   # Your API app
+    'rest_framework.authtoken',
+
+    # Your apps
+    'api',
 ]
+
 
 
 
