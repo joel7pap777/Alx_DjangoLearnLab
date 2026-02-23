@@ -1,9 +1,10 @@
-from rest_framework import generics
-from rest_framework.permissions import AllowAny
 from django.contrib.auth import get_user_model
+from rest_framework import generics
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from .serializers import RegisterSerializer
 
@@ -17,6 +18,8 @@ class RegisterView(generics.CreateAPIView):
 
 
 class LoginView(ObtainAuthToken):
+    permission_classes = [AllowAny]
+
     def post(self, request, *args, **kwargs):
         response = super().post(request, *args, **kwargs)
         token = Token.objects.get(key=response.data["token"])
@@ -24,10 +27,6 @@ class LoginView(ObtainAuthToken):
             "token": token.key,
             "user_id": token.user_id
         })
-        
-from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
 
 
 class ProfileView(APIView):
