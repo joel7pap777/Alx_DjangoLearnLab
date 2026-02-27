@@ -1,11 +1,10 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-
-class User(AbstractUser):
-    following = models.ManyToManyField(
+class CustomUser(AbstractUser):
+    followers = models.ManyToManyField(
         "self",
         symmetrical=False,
-        related_name="followers",
-        blank=True
+        related_name="following",
+        blank=True,
     )

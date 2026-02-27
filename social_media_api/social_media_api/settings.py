@@ -130,7 +130,7 @@ REST_FRAMEWORK = {
     ],
 }
 
-AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = "accounts.CustomUser"
 
 INSTALLED_APPS += ["django_filters"]
 

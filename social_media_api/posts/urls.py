@@ -7,9 +7,11 @@ router.register(r"comments", CommentViewSet, basename="comment")
 
 urlpatterns = router.urls
 
-from django.urls import path
-from .views import feed
 
-urlpatterns += [
-    path('feed/', feed),
+
+from django.urls import path
+from .views import FeedView
+
+urlpatterns = [
+    path("feed/", FeedView.as_view(), name="feed"),
 ]
